@@ -1,0 +1,23 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core" controllerName="auths.controller.Detail">
+    <Page id="detailPage" title="{RoleName}" showNavButton="true" navButtonPress="onNavBack">
+        <content>
+            <!-- <Select forceSelection="false" selectedKey="001" items="{
+						path: '/xTQAxAPPS_AVAILABLE_VH',
+						sorter: { path: 'd' }
+					}">
+                <core:ListItem key="{k}" text="{d}" />
+            </Select> -->
+            <VBox id="vbContent" class="sapUiTinyMargin" />
+            <!-- <Button text="asdsa" press="_loadAllapps"></Button> -->
+        </content>
+        <footer>
+            <OverflowToolbar id="_IDGenOverflowToolbar1">
+                <ToolbarSpacer id="_IDGenToolbarSpacer1" />
+                <Button id="_IDGenButton1" type="Emphasized" text="{i18n>Save}" press="onSaveData" />
+                <Button id="_IDGenButton2" type="Default" text="{i18n>Cancel}" press="onNavBack" />
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

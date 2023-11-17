@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/core/UIComponent","sap/ui/Device","auths/model/models","./controller/ErrorHandler"],function(e,t,o,i){"use strict";return e.extend("auths.Component",{metadata:{manifest:"json"},init:function(){e.prototype.init.apply(this,arguments);this._oErrorHandler=new i(this);this.getRouter().initialize();this.setModel(o.createDeviceModel(),"device");this.setModel(o.createGlobalModel(),"global")},destroy:function(){this._oErrorHandler.destroy();e.prototype.destroy.apply(this,arguments)}})});
+//# sourceMappingURL=Component.js.map

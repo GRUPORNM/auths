@@ -1,0 +1,2 @@
+sap.ui.define(["./BaseController","sap/ui/model/json/JSONModel"],function(e,s){"use strict";return e.extend("auths.controller.App",{onInit(){var e=new s({busy:false,create:"false"});this.setModel(e,"global")}})});
+//# sourceMappingURL=App.controller.js.map

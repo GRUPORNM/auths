@@ -1,0 +1,77 @@
+<mvc:View xmlns:f="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns="sap.m" controllerName="auths.controller.UserDetail">
+    <Page id="MainPage" title="{Name} ({Usrid})" showNavButton="true" navButtonPress="onNavBack">
+        <VBox class="sapUiSmallMargin">
+            <f:SimpleForm id="SimpleFormDisplayColumn_threeGroups234" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4" adjustLabelSpan="false">
+                <f:content>
+                    <core:Title id="tPersonal" text="{i18n>PersonalInfo}" />
+                    <Label id="lbPartner" text="{i18n>Partner}" />
+                    <Select id="inPartner" editable="{UserDetail>/editable}" selectedKey="{Partner}" forceSelection="true">
+                        <core:Item key="0000106252" text="TJA-TRANSPORTES J.AMARAL S.A" />
+                        <core:Item key="0000100488" text="RNM - PRODUTOS QUIMICOS, SA" />
+                        <core:Item key="0000104917" text="BP PORTUGAL" />
+                    </Select>
+
+                    <Label id="lbEmail" text="{i18n>Email}" />
+                    <Input id="inEmail" value="{UsrEmail}" editable="{UserDetail>/editable}" />
+
+                    <Label id="lbNationality" text="{i18n>Nationality}" />
+                    <Input id="inNationality" showSuggestion="true" name="nationality" value="{Nationality}" editable="{UserDetail>/editable}" suggestionItems="{/xTQAxCOUNTRIES_VH}" selectedKey="{Nationality}">
+                        <suggestionItems>
+                            <core:ListItem key="{land1}" text="{landx}"/>
+                        </suggestionItems>
+                    </Input>
+
+                    <Label id="lbName" text="{i18n>Name}" />
+                    <Input id="inName" value="{Name}" editable="{UserDetail>/editable}" />
+
+                    <Label id="lbBirthDate" text="{i18n>BirthDate}" />
+                    <DatePicker id="DP2" value="{
+						path:'BirthDate',
+						type:'sap.ui.model.type.Date',
+						formatOptions: {
+							style: 'medium',
+							strictParsing: true
+						}
+					}" editable="{UserDetail>/editable}" />
+
+                    <Label id="lbContact" text="{i18n>Contact}" />
+                    <Input id="inContact" value="{Contact}" editable="{UserDetail>/editable}" />
+
+                    <Toolbar ariaLabelledBy="Title2">
+                        <Title id="tInfo" text="{i18n>UserSettings}" />
+                        <ToolbarSpacer />
+                        <Button id="btChange" icon="sap-icon://edit" press="onPermToChange" visible="true" />
+                    </Toolbar>
+
+                    <Label id="lbUsrTypeId" text="{i18n>UsrTypeId}" />
+                    <Select id="inUsrTypeId" editable="{UserDetail>/editable}" forceSelection="true" selectedKey="{UsrTypeId}" items="{
+							path: '/xTQAxUSRTYPE_VH'
+						}">
+                        <core:Item key="{UserType}" text="{UserTypeText}" />
+                    </Select>
+
+                    <Label id="lbPassword" text="{i18n>Password}" />
+                    <Input id="inPassword" type="Password" placeholder="New Password" editable="{UserDetail>/editable}" />
+
+                    <Label id="lbRoleId" text="{i18n>RoleId}" />
+                    <Select id="inRoleId" editable="{UserDetail>/editable}" forceSelection="true" selectedKey="{RoleId}" items="{
+							path: '/xTQAxROLES_VH'
+						}">
+                        <core:Item key="{RoleId}" text="{RoleNameA}" />
+                    </Select>
+                </f:content>
+            </f:SimpleForm>
+        </VBox>
+        <footer>
+            <OverflowToolbar>
+                <ToolbarSpacer />
+                <Button id="btnChange" type="Emphasized" text="{i18n>Save}" press="onSaveChanges" visible="{UserDetail>/editable}" />
+                <Button id="btNavBack" type="Default" text="{i18n>Cancel}" press="onNavBack" />
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

@@ -1,0 +1,141 @@
+<mvc:View controllerName="auths.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:core="sap.ui.core"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Page showHeader="false">
+        <content>
+            <IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding" select="onChangeIconTabBar">
+                <items>
+                    <IconTabFilter id="_IDGenIconTabFilter1" icon="sap-icon://user-settings" key="user-settings" text="Users">
+                        <!-- <Text text="Attachments go here ..." /> -->
+                        <smartFilterBar:SmartFilterBar id="smartFilterBar" entitySet="xTQAxUSR01_DD" persistencyKey="SmartFilter_Explored" />
+                        <smartTable:SmartTable id="LineItemsSmartTable" demandPopin="true" placeToolbarInTable="true" entitySet="xTQAxUSR01_DD" smartFilterId="smartFilterBar" tableType="ResponsiveTable" useVariantManagement="true" useTablePersonalisation="true" header="Entries" showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true" class="sapUiResponsiveContentPadding" enableAutoColumnWidth="true" app:useSmartToggle="true" initiallyVisibleFields="Partner,Usrid,UsrType,LastLogon,LoginAttempts,UsrStatus,Name,UsrEmail">
+                            <smartTable:customToolbar>
+                                <OverflowToolbar id="_IDGenOverflowToolbar1a" design="Transparent">
+                                    <ToolbarSpacer id="_IDGenToolbarSpacer1a" />
+                                    <Button id="btCreate" text="{i18n>Create}" press="onCreateRequest" />
+                                    <Button id="btUnlocked" icon="sap-icon://locked" press="onChangeStatus" />
+                                </OverflowToolbar>
+                            </smartTable:customToolbar>
+                            <smartTable:layoutData>
+                                <FlexItemData id="_IDGenFlexItemData1" growFactor="1" baseSize="0%" />
+                            </smartTable:layoutData>
+                            <Table id="requestTable" mode="SingleSelectLeft" selectionChange="onChangeSelection">
+                                <columns />
+                                <items>
+                                    <ColumnListItem id="_IDGenColumnListItem1b" type="Navigation" press="onRequestTablePress" />
+                                </items>
+                            </Table>
+                        </smartTable:SmartTable>
+                    </IconTabFilter>
+                    <IconTabFilter id="_IDGenIconTabFilter2" icon="sap-icon://permission" key="role" text="Roles">
+                        <Table id="AuthTable" items="{path: '/AuthorizationsHeader', sorter: {path: 'RoleName'}}">
+                            <headerToolbar>
+                                <OverflowToolbar id="_IDGenOverflowToolbar1">
+                                    <Title id="_IDGenTitle1" text="{i18n>availableRoles}" level="H2" />
+                                    <ToolbarSpacer id="_IDGenToolbarSpacer1" />
+                                    <Button id="_IDGenButton1" text="{i18n>addRole}" press="onAddRole" />
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column id="_IDGenColumn1">
+                                    <Text id="_IDGenText1" text="{i18n>roleName}" />
+                                </Column>
+                                <Column id="_IDGenColumn3">
+                                    <Text id="_IDGenText3" text="{i18n>changedBy}" />
+                                </Column>
+                                <Column id="_IDGenColumn4">
+                                    <Text id="_IDGenText7" text="{i18n>changedAt}" />
+                                </Column>
+                                <Column id="_IDGenColumn5">
+                                    <Text id="_IDGenText8" text="{i18n>createdBy}" />
+                                </Column>
+                                <Column id="_IDGenColumn6">
+                                    <Text id="_IDGenText9" text="{i18n>createAt}" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem id="_IDGenColumnListItem1" vAlign="Middle" type="Navigation" press="onOpenPressed">
+                                    <cells>
+                                        <Text id="_IDGenText4" text="{RoleName}" wrapping="false" />
+                                        <Text id="_IDGenText10" text="{ChangedBy}" wrapping="false" />
+                                        <Text id="_IDGenText11" text="{ path: 'ChangedAt' , type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'yyyy-MM-dd'} }" wrapping="false" />
+                                        <Text id="_IDGenText12" text="{CreatedBy}" wrapping="false" />
+                                        <Text id="_IDGenText13" text="{ path: 'CreatedAt' , type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'yyyy-MM-dd'} }" wrapping="false" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </IconTabFilter>
+                    <IconTabFilter id="_IdTabFilterAppsSettings" icon="sap-icon://sap-ui5" key="applications" text="Applications">
+                        <smartFilterBar:SmartFilterBar id="smartFilterBarApps" entitySet="xTQAxAPPLICATIONS_DD" persistencyKey="SmartFilter_Explored" />
+                        <smartTable:SmartTable id="LineItemsSmartTableApps" demandPopin="true" placeToolbarInTable="true" entitySet="xTQAxAPPLICATIONS_DD" smartFilterId="smartFilterBarApps" tableType="ResponsiveTable" useVariantManagement="true" useTablePersonalisation="true" header="Entries" showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true" class="sapUiResponsiveContentPadding" enableAutoColumnWidth="true" app:useSmartToggle="true">
+                            <smartTable:customToolbar>
+                                <OverflowToolbar id="_IDGenOverflowToolbar1apps" design="Transparent">
+                                    <ToolbarSpacer id="_IDGenToolbarSpacer1apps" />
+                                    <Button id="btnCreateApp" text="{i18n>Create}" press="onCreateApp" />
+                                    <Button id="btnTranslateApp" text="{i18n>Translate}" press="onTranslateApp" enabled="{Main>/appeditable}"/>
+                                    <Button id="btnDeleteApp" text="{i18n>Delete}" enabled="{Main>/appeditable}" press="onDeleteApp" />
+                                    <Button id="btnActiveApp" enabled="{Main>/appeditable}" text="{i18n>Active}" press="onActiveApp" />
+                                    <!-- <Button id="btUnlockedapps" icon="sap-icon://locked" press="onChangeStatus" /> -->
+                                </OverflowToolbar>
+                            </smartTable:customToolbar>
+                            <smartTable:layoutData>
+                                <FlexItemData id="_IDGenFlexItemData1apps" growFactor="1" baseSize="0%" />
+                            </smartTable:layoutData>
+                            <Table id="requestTableApps" mode="SingleSelectLeft" selectionChange="onChangeSelectionApps">
+                                <columns>
+                                    <Column id="id_column1">
+                                        <Text text="App. Id" />
+                                        <customData>
+                                            <core:CustomData key="p13nData" value='\{"columnKey": "app_id", "leadingProperty": "app_id", "sortProperty": "app_id", "filterProperty": "app_id"}'/>
+                                        </customData>
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem id="_IDGenColumnListItem1bapps" type="Navigation" press="onRequestAppTablePress">
+                                        <cells>
+                                            <!-- <Core:Icon id="_IDGenObjectStatus1" src="{AppIcon}" /> -->
+                                            <!-- <core:Icon src="{AppIcon}" class="size1" color="#031E48" /> -->
+                                            <!-- <ObjectListItem title="{AppId}" icon="{AppIcon}" /> -->
+                                            <HBox>
+                                                <!-- <core:Icon src="{path: 'app_icon', formatter: 'appIconFormatter'}" width="32px" /> -->
+                                                <ObjectStatus icon="{path: 'app_icon', formatter: '.formatter.appIconFormatter'}" state="Indication05" />
+                                                <Text text="{app_id}" />
+                                            </HBox>
+                                            <!-- <Text text="{ITEM_DESC}"></Text> -->
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </smartTable:SmartTable>
+                    </IconTabFilter>
+                    <IconTabFilter id="_IdTabFilterGroupSettings" icon="sap-icon://group-2" key="group-settings" text="Groups">
+                        <smartFilterBar:SmartFilterBar id="smartFilterBarGroups" entitySet="xTQAxLAUNCHPAD_GROUP_VH" persistencyKey="SmartFilter_Explored" />
+                        <smartTable:SmartTable id="LineItemsSmartTableGroups" demandPopin="true" placeToolbarInTable="true" entitySet="xTQAxLAUNCHPAD_GROUP_VH" smartFilterId="smartFilterBarGroups" tableType="ResponsiveTable" useVariantManagement="true" useTablePersonalisation="true" header="Entries" showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true" class="sapUiResponsiveContentPadding" enableAutoColumnWidth="true" app:useSmartToggle="true">
+                            <smartTable:customToolbar>
+                                <OverflowToolbar id="_IDGenOverflowToolbar1Groups" design="Transparent">
+                                    <ToolbarSpacer id="_IDGenToolbarSpacer1Groups" />
+                                    <Button id="btnCreateGroup" text="{i18n>Create}" press="onCreateGroup" />
+                                    <Button id="btnTranslateGroup" text="{i18n>Translate}" press="onTranslateGroup" enabled="{Main>/groupeditable}" />
+                                    <Button id="btnDeleteGroup" text="{i18n>Delete}" enabled="{Main>/groupeditable}" press="onDeleteGroup" />
+                                </OverflowToolbar>
+                            </smartTable:customToolbar>
+                            <smartTable:layoutData>
+                                <FlexItemData id="_IDGenFlexItemData1Groups" growFactor="1" baseSize="0%" />
+                            </smartTable:layoutData>
+                            <Table id="requestTableGroups" mode="SingleSelectLeft" selectionChange="onChangeSelectionGroups">
+                                <items>
+                                    <ColumnListItem id="_IDGenColumnListItem1bgroups" type="Navigation" press="onRequestGroupTablePress" />
+                                </items>
+                            </Table>
+                        </smartTable:SmartTable>
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+        </content>
+    </Page>
+</mvc:View>

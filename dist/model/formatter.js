@@ -1,0 +1,2 @@
+sap.ui.define([],function(){"use strict";return{getLast4Chars:function(n){},appIconFormatter:function(n){if(sap.ui.core.IconPool.isIconURI(n))return n;else return"sap-icon://sys-help-2"}}});
+//# sourceMappingURL=formatter.js.map
