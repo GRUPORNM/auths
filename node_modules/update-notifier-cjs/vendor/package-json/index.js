@@ -1,19 +1,8 @@
 'use strict';
-const {Agent: HttpAgent} = require('http');
-const {Agent: HttpsAgent} = require('https');
-const got = require('got');
+require('isomorphic-fetch');
 const registryUrl = require('registry-url');
 const registryAuthToken = require('registry-auth-token');
 const semver = require('semver');
-
-// These agent options are chosen to match the npm client defaults and help with performance
-// See: `npm config get maxsockets` and #50
-const agentOptions = {
-	keepAlive: true,
-	maxSockets: 50
-};
-const httpAgent = new HttpAgent(agentOptions);
-const httpsAgent = new HttpsAgent(agentOptions);
 
 class PackageNotFoundError extends Error {
 	constructor(packageName) {
@@ -52,21 +41,9 @@ const packageJson = async (packageName, options) => {
 		headers.authorization = `${authInfo.type} ${authInfo.token}`;
 	}
 
-	const gotOptions = {
-		headers,
-		agent: {
-			http: httpAgent,
-			https: httpsAgent
-		}
-	};
-
-	if (options.agent) {
-		gotOptions.agent = options.agent;
-	}
-
 	let data;
 	try {
-		data = await got(packageUrl, gotOptions).json();
+		data = await fetch(packageUrl, { keepAlive: true, headers }).then(r => r.json());
 	} catch (error) {
 		if (error.response.statusCode === 404) {
 			throw new PackageNotFoundError(packageName);
